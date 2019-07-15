@@ -63,6 +63,6 @@ async function moveAllListCardsToList (req, res) {
 }
 
 // routes
-app.get('/list/:srcId/list/:destId', amoveAllListCardsToList);
+app.get('/list/:srcId/list/:destId', moveAllListCardsToList);
 
 module.exports = Webtask.fromExpress(app);
