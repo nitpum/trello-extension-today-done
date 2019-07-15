@@ -54,7 +54,10 @@ const moveAllListCardsToList = function (req, res) {
       const cards = data.map(function (card) {
         return card.id
       });
-      res.json(cards)
+      for(var cardId in cards) {
+        moveCardToList(cardId, toListId, token, key);
+      }
+      res.sendStatus(200)
     })
     .catch(function () {
       res.sendStatus(404)
