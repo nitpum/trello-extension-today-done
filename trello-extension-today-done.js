@@ -27,6 +27,9 @@ const moveAllListCardsToList = function (req, res) {
     .then(function (data) {
       res.sendJson(data);
     })
+    .catch(function (err) {
+      res.sendJson(err)
+    })
 }
 
 app.get('/cards/:id/', moveAllListCardsToList);
