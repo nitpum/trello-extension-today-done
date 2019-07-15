@@ -49,7 +49,7 @@ const moveAllListCardsToList = function (req, res) {
   const key = req.webtaskContext.secrets.key;
   const fromListId = req.params.srcId;
   const toListId = req.params.destId;
-  getCardOfList(fromListId, toListId, token, key)
+  getCardOfList(fromListId, token, key)
     .then(function (data) {
       const cards = data.map(function (card) {
         return card.id
