@@ -9,7 +9,7 @@ const Webtask    = require('webtask-tools');
 axios.defaults.baseURL = 'https://api.trello.com/1/';
 
 // function
-const getBoardLists = function (boardId, token, key) {
+async function getBoardLists(boardId, token, key) {
   return axios
           .get(`boards/${boardId}/lists?token=${token}&key=${key}`)
           .then(function (response) {
@@ -20,7 +20,7 @@ const getBoardLists = function (boardId, token, key) {
           })
 }
 
-const getCardOfList = function(listId, token, key) {
+async function getCardOfList(listId, token, key) {
   return axios
           .get(`lists/${listId}/cards?token=${token}&key=${key}`)
           .then(function (response) {
@@ -31,7 +31,7 @@ const getCardOfList = function(listId, token, key) {
           })
 }
 
-const moveCardToList = function(cardId, listId, token, key) {
+async function moveCardToList(cardId, listId, token, key) {
   return axios
           .put(`cards/${cardId}?idList=${listId}&token=${token}&key=${key}`)
           .then(function (response) {
@@ -44,7 +44,7 @@ const moveCardToList = function(cardId, listId, token, key) {
 
 
 // controllers
-const moveAllListCardsToList = function (req, res) {
+async function moveAllListCardsToList (req, res) {
   const token = req.webtaskContext.secrets.token;
   const key = req.webtaskContext.secrets.key;
   const fromListId = req.params.srcId;
@@ -63,6 +63,6 @@ const moveAllListCardsToList = function (req, res) {
 }
 
 // routes
-app.get('/list/:srcId/list/:destId', moveAllListCardsToList);
+app.get('/list/:srcId/list/:destId', amoveAllListCardsToList);
 
 module.exports = Webtask.fromExpress(app);
