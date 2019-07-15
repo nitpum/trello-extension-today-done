@@ -25,10 +25,10 @@ const moveAllListCardsToList = function (req, res) {
   const id = req.params.id;
   getBoardLists(id, token, key)
     .then(function (data) {
-      res.sendJson(data);
+      res.json(data);
     })
     .catch(function (err) {
-      res.sendJson(err)
+      res.json(err)
     })
 }
 
