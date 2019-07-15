@@ -51,13 +51,11 @@ const moveAllListCardsToList = function (req, res) {
   const toListId = req.params.destId;
   getCardOfList(fromListId, token, key)
     .then(function (data) {
-      const cards = data.map(function (card) {
-        return card.id
-      });
-      for(var cardId in cards) {
-        moveCardToList(cardId, toListId, token, key);
-      }
-      res.sendStatus(200)
+      const cards = data.map(card => card.id);
+      // for(var cardId in cards) {
+      //   moveCardToList(cardId, toListId, token, key);
+      // }
+      res.json(cards)
     })
     .catch(function () {
       res.sendStatus(404)
