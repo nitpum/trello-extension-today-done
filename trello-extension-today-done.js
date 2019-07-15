@@ -8,9 +8,9 @@ const Webtask    = require('webtask-tools');
 
 axios.defaults.baseURL = 'https://api.trello.com/1/';
 
-function getBoardLists (boardId) {
+const getBoardLists = function (boardId) {
   return axios
-          .get(`boards/${id}/lists?token=${token}&key=${key}`)
+          .get(`boards/${boardId}/lists?token=${token}&key=${key}`)
           .then(function (response) {
             return response.data
           })
@@ -19,11 +19,11 @@ function getBoardLists (boardId) {
           })
 }
 
-function moveAllListCardsToList (req, res) {
+const moveAllListCardsToList = function (req, res) {
   const token = req.webtaskContext.secrets.token;
   const key = req.webtaskContext.secrets.key;
   const id = req.params.id;
-  getBoardLists()
+  getBoardLists(id)
     .then(function (data) {
       res.sendJson(data);
     })
